@@ -4,6 +4,41 @@ from numba import njit, prange
 
 @njit
 def simulate_xyeta(Nsteps, dt, sigma, a, theta_eta, tau_x = 1, theta_y = 1, x0 = 0, y0 = 0, eta0 = 0):
+    """
+    Simulates the Ornstein-Uhlenbeck process for x, y and eta.
+
+    Parameters
+    ----------
+    Nsteps : int
+        Number of steps to simulate.
+    dt : float
+        Time step.
+    sigma : float
+        Coupling between x -> eta.
+    a : float
+        Coupling between y -> x.
+    theta_eta : float
+        Time scale of eta.
+    tau_x : float
+        Time scale of x.
+    theta_y : float
+        Time scale of y.
+    x0 : float
+        Initial value of x.
+    y0 : float
+        Initial value of y.
+    eta0 : float
+        Initial value of eta.
+
+    Returns
+    -------
+    x : numpy.ndarray
+        Array of x values.
+    y : numpy.ndarray
+        Array of y values.
+    eta : numpy.ndarray
+        Array of eta values.
+    """
     x = np.zeros(Nsteps, dtype=np.float64)
     y = np.zeros(Nsteps, dtype=np.float64)
     eta = np.zeros(Nsteps, dtype=np.float64)
@@ -30,6 +65,23 @@ def simulate_xyeta(Nsteps, dt, sigma, a, theta_eta, tau_x = 1, theta_y = 1, x0 =
 
 @njit
 def cov_matrix(sigma, theta_eta, a):
+    """
+    Covariance matrix of the joint distribution of x and y.
+
+    Parameters
+    ----------
+    sigma : float
+        Coupling between x -> eta.
+    theta_eta : float
+        Time scale of eta.
+    a : float
+        Coupling between y -> x.
+
+    Returns
+    -------
+    cov : numpy.ndarray
+        Covariance matrix.
+    """
     theta = 1 + theta_eta
     offdiag = 1/2*a*(1 + theta_eta*sigma**2*(1+2*theta_eta)/theta**2)
     return np.array([[1 + theta_eta*sigma**2/theta,
@@ -39,18 +91,95 @@ def cov_matrix(sigma, theta_eta, a):
 
 @njit
 def probability_xy(x, y, det, cov_inv):
+    """
+    Probability density function of the joint distribution of x and y.
+
+    Parameters
+    ----------
+    x : float or array_like
+        Value of x.
+    y : float or array_like
+        Value of y.
+    det : float
+        Determinant of the covariance matrix.
+    cov_inv : numpy.ndarray
+        Inverse of the covariance matrix.
+
+    Returns
+    -------
+    pjoint : float or array_like
+        Probability density.
+    """
     return np.exp(-0.5 * (x**2 * cov_inv[0,0] + y**2 * cov_inv[1,1] + 2*x*y*cov_inv[0,1])) / (2*np.pi*np.sqrt(det))
 
 @njit
 def probability_x(x, cov):
+    """
+    Marginal probability density function of x.
+
+    Parameters
+    ----------
+    x : float or array_like
+        Value of x.
+    cov : numpy.ndarray
+        Covariance matrix.
+
+    Returns
+    -------
+    px : float or array_like
+        Probability density.
+    """
     return np.exp(-0.5 * (x**2 / cov[0,0])) / (np.sqrt(2*np.pi*cov[0,0]))
 
 @njit
 def probability_y(y, cov):
+    """
+    Marginal probability density function of y.
+
+    Parameters
+    ----------
+    y : float or array_like
+        Value of y.
+    cov : numpy.ndarray
+        Covariance matrix.
+    
+    Returns
+    -------
+    py : float or array_like
+        Probability density.
+    """
     return np.exp(-0.5 * (y**2 / cov[1,1])) / (np.sqrt(2*np.pi*cov[1,1]))
 
 @njit
 def find_mutual_traj(Nsteps, dt, sigma, a, theta_eta, tau_x = 1, theta_y = 1, Nburn = 1000000):
+    """
+    Finds the mutual information for the marginalized xy process from a simulated
+    trajectory of x and y.
+
+    Parameters
+    ----------
+    Nsteps : int
+        Number of steps to simulate.
+    dt : float
+        Time step.
+    sigma : float
+        Coupling between x -> eta.
+    a : float
+        Coupling between y -> x.
+    theta_eta : float
+        Time scale of eta.
+    tau_x : float
+        Time scale of x.
+    theta_y : float
+        Time scale of y.
+    Nburn : int
+        Number of discarded steps to reach stationarity.
+
+    Returns
+    -------
+    mutual_trajectory : numpy.ndarray
+        Array of mutual information values at each timepoint.
+    """
     x0, y0, eta0 = simulate_xyeta(Nburn, dt, sigma, a, theta_eta, tau_x, theta_y)
     x, y, _ = simulate_xyeta(Nsteps, dt, sigma, a, theta_eta, tau_x, theta_y, x0[-1], y0[-1], eta0[-1])
     x0 = None
@@ -73,6 +202,23 @@ def find_mutual_traj(Nsteps, dt, sigma, a, theta_eta, tau_x = 1, theta_y = 1, Nb
 
 @njit
 def find_Axy(sigma, theta_eta, a):
+    """
+    Finds the interation matrix for the marginalized xy process.
+
+    Parameters
+    ----------
+    sigma : float
+        Coupling between x -> eta.
+    theta_eta : float
+        Time scale of eta.
+    a : float
+        Coupling between y -> x.
+
+    Returns
+    -------
+    Amat : numpy.ndarray
+        Interaction matrix.
+    """
     theta = 1 + theta_eta
 
     den = (4 + a**2)*theta**4 + 2*(2+a**2)*theta_eta*theta**3*sigma**2
@@ -86,6 +232,35 @@ def find_Axy(sigma, theta_eta, a):
 
 @njit
 def find_Sxy_traj(Nsteps, dt, sigma, a, theta_eta, tau_x = 1, theta_y = 1, Nburn = 1000000):
+    """
+    Finds the dissipation rate of the marginalized xy process from a simulated trajectory.
+
+    Parameters
+    ----------
+    Nsteps : int
+        Number of steps to simulate.
+    dt : float
+        Time step.
+    sigma : float
+        Coupling between x -> eta.
+    a : float
+        Coupling between y -> x.
+    theta_eta : float
+        Time scale of eta.
+    tau_x : float
+        Time scale of x.
+    theta_y : float
+        Time scale of y.
+    Nburn : int
+        Number of discarded steps to reach stationarity.
+
+    Returns
+    -------
+    Sx_traj : numpy.ndarray
+        Array of dissipation rate values for x at each timepoint.
+    Sy_traj : numpy.ndarray
+        Array of dissipation rate values for y at each timepoint.
+    """
     x0, y0, eta0 = simulate_xyeta(Nburn, dt, sigma, a, theta_eta, tau_x, theta_y)
     x, y, _ = simulate_xyeta(Nsteps, dt, sigma, a, theta_eta, tau_x, theta_y, x0[-1], y0[-1], eta0[-1])
     x0 = None
@@ -108,6 +283,49 @@ def find_Sxy_traj(Nsteps, dt, sigma, a, theta_eta, tau_x = 1, theta_y = 1, Nburn
 
 @njit
 def find_functional(Nsteps, dt, sigma, a, theta_eta, Lambda, x0, y0, eta0, tau_x = 1, theta_y = 1):
+    """
+    Finds the Pareto functional from a simualted trajectory of x and y.
+
+    Parameters
+    ----------
+    Nsteps : int
+        Number of steps to simulate.
+    dt : float
+        Time step.
+    sigma : float
+        Coupling between x -> eta.
+    a : float
+        Coupling between y -> x.
+    theta_eta : float
+        Time scale of eta.
+    Lambda : float
+        Tradeoff parameter.
+    x0 : float
+        Initial value of x.
+    y0 : float
+        Initial value of y.
+    eta0 : float
+        Initial value of eta.
+    tau_x : float
+        Time scale of x.
+    theta_y : float
+        Time scale of y.
+
+    Returns
+    -------
+    functional : float
+        Pareto functional.
+    x0 : float
+        Final value of x.
+    y0 : float
+        Final value of y.
+    eta0 : float
+        Final value of eta.
+    Sxy : float
+        Dissipation rate of the marginalized xy process.
+    Ixy : float
+        Mutual information of the marginalized xy process.
+    """
     x, y, eta = simulate_xyeta(Nsteps, dt, sigma, a, theta_eta, tau_x, theta_y, x0, y0, eta0)
 
     Amat = find_Axy(sigma, theta_eta, a)
@@ -218,10 +436,23 @@ def functional_exact(sigma, a, theta_eta, Lambda):
     return -(1 - Lambda)*S + Lambda*I
 
 @njit
-def Sxy_exact(sigma, a, theta_eta):
+def Sxyeta_exact(sigma, a, theta_eta):
     theta = 1 + theta_eta
     return a**2/2 + (2 + theta_eta*(2+a**2))/theta**2*sigma**2/2
-    
+
+@njit
+def Sxy_exact(sigma, a, theta_eta):
+    theta = 1 + theta_eta
+
+    den = (4 + a**2)*theta**4 + 2*(2+a**2)*theta_eta*theta**3*sigma**2
+    den += a**2*theta_eta**2*(theta + theta_eta)*sigma**4
+
+    S = (4 + a**2)*theta**2 + theta_eta*(2 + a**2 + 2*(1 + a**2)*theta_eta)*sigma**2
+    S *= (a + a*theta_eta*(2 + theta_eta + sigma**2))**2
+    S /= 2*den*theta**2
+
+    return S
+
 
 @njit 
 def Ixy_exact(sigma, a, theta_eta):
