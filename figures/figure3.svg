@@ -29,13 +29,13 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="pt"
      showgrid="false"
-     inkscape:zoom="0.7595177"
-     inkscape:cx="171.81956"
-     inkscape:cy="282.41607"
-     inkscape:window-width="1512"
-     inkscape:window-height="840"
-     inkscape:window-x="0"
-     inkscape:window-y="400"
+     inkscape:zoom="0.90269615"
+     inkscape:cx="181.12407"
+     inkscape:cy="261.43902"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="1512"
+     inkscape:window-y="25"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg4722" />
   <metadata
@@ -229,6 +229,14 @@
     <path
        id="Cmr10-34-8"
        d="m 178,1056 v 225 l 1978,2950 q 22,32 66,32 h 94 q 72,0 72,-72 V 1281 h 628 V 1056 H 2388 V 428 q 0,-131 187,-167 188,-36 434,-36 V 0 H 1247 v 225 q 247,0 434,36 188,36 188,167 v 628 z m 213,225 h 1515 v 2266 z"
+       transform="scale(0.015625)" />
+    <path
+       id="Avenir-Book-34-7"
+       d="m 2202,4070 h -13 L 627,1498 h 1575 z m 460,-2572 h 653 V 1075 H 2662 V 0 H 2202 V 1075 H 243 v 525 l 1831,2931 h 588 z"
+       transform="scale(0.015625)" />
+    <path
+       id="path6-7"
+       d="m 2202,4070 h -13 L 627,1498 h 1575 z m 460,-2572 h 653 V 1075 H 2662 V 0 H 2202 V 1075 H 243 v 525 l 1831,2931 h 588 z"
        transform="scale(0.015625)" />
   </defs>
   <g
@@ -10615,138 +10623,6 @@
   <g
      id="LineCollection_6" />
   <g
-     id="matplotlib.axis_3">
-    <g
-       id="xtick_4">
-      <g
-         id="line2d_18">
-        <g
-           id="g3796">
-          <use
-             xlink:href="#m232073d46c"
-             x="396.72653"
-             y="173.26451"
-             style="fill:#878787;stroke:#878787;stroke-width:1.1"
-             id="use3794" />
-        </g>
-      </g>
-      <g
-         id="text_13">
-        <!-- $\mathdefault{10^{3}}$ -->
-        <g
-           style="fill:#4a4a4a"
-           transform="matrix(0.152,0,0,-0.152,385.02253,188.95477)"
-           id="g3808">
-          <defs
-             id="defs3800">
-            <path
-               id="Avenir-Book-33"
-               d="m 1306,2586 h 236 q 199,0 381,44 183,45 317,144 134,100 214,260 80,160 80,384 0,364 -221,566 -220,202 -617,202 -288,0 -506,-128 -217,-128 -358,-372 l -403,205 q 205,365 521,541 317,176 733,176 269,0 506,-77 237,-77 416,-227 179,-150 284,-371 106,-221 106,-503 0,-185 -61,-352 -60,-166 -166,-301 -106,-134 -247,-233 -140,-99 -294,-150 l 19,-13 q 192,-39 352,-145 160,-105 275,-259 116,-153 180,-345 64,-192 64,-403 0,-314 -116,-557 Q 2886,429 2688,262 2490,96 2227,9 1965,-77 1670,-77 1171,-77 800,140 429,358 243,838 l 487,148 q 115,-327 342,-484 227,-156 637,-156 192,0 364,64 173,64 304,182 132,118 205,284 74,167 74,366 0,256 -96,432 -96,176 -256,284 -160,109 -368,157 -208,48 -432,48 h -198 z"
-               transform="scale(0.015625)" />
-          </defs>
-          <use
-             xlink:href="#Avenir-Book-31"
-             transform="translate(0,0.842187)"
-             id="use3802" />
-          <use
-             xlink:href="#Avenir-Book-30"
-             transform="translate(55.599991,0.842187)"
-             id="use3804" />
-          <use
-             xlink:href="#Avenir-Book-33"
-             transform="matrix(0.7,0,0,0.7,112.01893,33.6)"
-             id="use3806" />
-        </g>
-      </g>
-    </g>
-    <g
-       id="xtick_5">
-      <g
-         id="line2d_19">
-        <g
-           id="g3814">
-          <use
-             xlink:href="#m232073d46c"
-             x="441.36652"
-             y="173.26451"
-             style="fill:#878787;stroke:#878787;stroke-width:1.1"
-             id="use3812" />
-        </g>
-      </g>
-      <g
-         id="text_14">
-        <!-- $\mathdefault{10^{5}}$ -->
-        <g
-           style="fill:#4a4a4a"
-           transform="matrix(0.152,0,0,-0.152,429.66253,188.95477)"
-           id="g3826">
-          <defs
-             id="defs3818">
-            <path
-               id="Avenir-Book-35"
-               d="M 2976,4109 H 1120 l -26,-1363 q 148,57 301,82 154,26 307,26 320,0 582,-109 263,-108 452,-304 189,-195 294,-461 106,-265 106,-578 0,-327 -115,-599 Q 2906,531 2701,336 2496,141 2217,32 1939,-77 1613,-77 1184,-77 838,128 493,333 307,730 l 455,198 q 128,-269 358,-426 230,-156 531,-156 218,0 403,80 186,80 323,214 138,134 218,320 80,186 80,397 0,237 -83,435 -83,198 -231,342 -147,144 -352,221 -204,77 -447,77 -244,0 -484,-67 -240,-67 -457,-183 l 45,2349 h 2310 z"
-               transform="scale(0.015625)" />
-          </defs>
-          <use
-             xlink:href="#Avenir-Book-31"
-             transform="translate(0,0.684375)"
-             id="use3820" />
-          <use
-             xlink:href="#Avenir-Book-30"
-             transform="translate(55.599991,0.684375)"
-             id="use3822" />
-          <use
-             xlink:href="#Avenir-Book-35"
-             transform="matrix(0.7,0,0,0.7,112.01893,33.442188)"
-             id="use3824" />
-        </g>
-      </g>
-    </g>
-    <g
-       id="xtick_6">
-      <g
-         id="line2d_20">
-        <g
-           id="g3832">
-          <use
-             xlink:href="#m232073d46c"
-             x="486.00653"
-             y="173.26451"
-             style="fill:#878787;stroke:#878787;stroke-width:1.1"
-             id="use3830" />
-        </g>
-      </g>
-      <g
-         id="text_15">
-        <!-- $\mathdefault{10^{7}}$ -->
-        <g
-           style="fill:#4a4a4a"
-           transform="matrix(0.152,0,0,-0.152,474.30253,188.95477)"
-           id="g3844">
-          <defs
-             id="defs3836">
-            <path
-               id="Avenir-Book-37"
-               d="M 3034,4109 1210,0 H 691 L 2554,4109 H 346 v 422 h 2688 z"
-               transform="scale(0.015625)" />
-          </defs>
-          <use
-             xlink:href="#Avenir-Book-31"
-             transform="translate(0,0.684375)"
-             id="use3838" />
-          <use
-             xlink:href="#Avenir-Book-30"
-             transform="translate(55.599991,0.684375)"
-             id="use3840" />
-          <use
-             xlink:href="#Avenir-Book-37"
-             transform="matrix(0.7,0,0,0.7,112.01893,33.442188)"
-             id="use3842" />
-        </g>
-      </g>
-    </g>
-  </g>
-  <g
      id="ytick_3">
     <g
        id="line2d_21">
@@ -10816,10 +10692,10 @@
            xlink:href="#Avenir-Book-2e"
            x="55.599991"
            id="use3874" />
-        <use
-           xlink:href="#Avenir-Book-35"
-           x="83.399979"
-           id="use3876" />
+        <path
+           id="use3876"
+           d="m 129.89998,64.203125 h -29 L 100.49373,42.90625 q 2.3125,0.890625 4.70312,1.28125 2.40625,0.40625 4.79688,0.40625 5,0 9.09375,-1.703125 4.10937,-1.6875 7.0625,-4.75 2.95312,-3.046875 4.59375,-7.203125 1.65625,-4.140625 1.65625,-9.03125 0,-5.109375 -1.79688,-9.359375 -1.79687,-4.25 -5,-7.296875 -3.20312,-3.046875 -7.5625,-4.75 -4.34375,-1.703125 -9.4375,-1.703125 -6.70312,0 -12.109371,3.203125 -5.390625,3.203125 -8.296875,9.40625 L 95.306229,14.5 q 2,-4.203125 5.593751,-6.65625 3.59375,-2.4375 8.29687,-2.4375 3.40625,0 6.29688,1.25 2.90625,1.25 5.04687,3.34375 2.15625,2.09375 3.40625,5 1.25,2.90625 1.25,6.203125 0,3.703125 -1.29687,6.796875 -1.29688,3.09375 -3.60938,5.34375 -2.29687,2.25 -5.5,3.453125 Q 111.6031,38 107.80623,38 q -3.8125,0 -7.5625,-1.046875 -3.750001,-1.046875 -7.140626,-2.859375 l 0.703125,36.703125 h 36.093751 z"
+           style="stroke-width:0.015625" />
       </g>
     </g>
   </g>
@@ -10964,131 +10840,20 @@
        id="path3949" />
   </g>
   <g
-     id="matplotlib.axis_5">
+     id="text_22">
+    <!-- $T_A$ -->
     <g
-       id="xtick_7">
-      <g
-         id="line2d_24">
-        <g
-           id="g3972">
-          <use
-             xlink:href="#m232073d46c"
-             x="396.72653"
-             y="367.56"
-             style="fill:#878787;stroke:#878787;stroke-width:1.1"
-             id="use3970" />
-        </g>
-      </g>
-      <g
-         id="text_19">
-        <!-- $\mathdefault{10^{3}}$ -->
-        <g
-           style="fill:#4a4a4a"
-           transform="matrix(0.152,0,0,-0.152,385.02253,383.25025)"
-           id="g3981">
-          <use
-             xlink:href="#Avenir-Book-31"
-             transform="translate(0,0.842187)"
-             id="use3975" />
-          <use
-             xlink:href="#Avenir-Book-30"
-             transform="translate(55.599991,0.842187)"
-             id="use3977" />
-          <use
-             xlink:href="#Avenir-Book-33"
-             transform="matrix(0.7,0,0,0.7,112.01893,33.6)"
-             id="use3979" />
-        </g>
-      </g>
-    </g>
-    <g
-       id="xtick_8">
-      <g
-         id="line2d_25">
-        <g
-           id="g3987">
-          <use
-             xlink:href="#m232073d46c"
-             x="441.36652"
-             y="367.56"
-             style="fill:#878787;stroke:#878787;stroke-width:1.1"
-             id="use3985" />
-        </g>
-      </g>
-      <g
-         id="text_20">
-        <!-- $\mathdefault{10^{5}}$ -->
-        <g
-           style="fill:#4a4a4a"
-           transform="matrix(0.152,0,0,-0.152,429.66253,383.25025)"
-           id="g3996">
-          <use
-             xlink:href="#Avenir-Book-31"
-             transform="translate(0,0.684375)"
-             id="use3990" />
-          <use
-             xlink:href="#Avenir-Book-30"
-             transform="translate(55.599991,0.684375)"
-             id="use3992" />
-          <use
-             xlink:href="#Avenir-Book-35"
-             transform="matrix(0.7,0,0,0.7,112.01893,33.442188)"
-             id="use3994" />
-        </g>
-      </g>
-    </g>
-    <g
-       id="xtick_9">
-      <g
-         id="line2d_26">
-        <g
-           id="g4002">
-          <use
-             xlink:href="#m232073d46c"
-             x="486.00653"
-             y="367.56"
-             style="fill:#878787;stroke:#878787;stroke-width:1.1"
-             id="use4000" />
-        </g>
-      </g>
-      <g
-         id="text_21">
-        <!-- $\mathdefault{10^{7}}$ -->
-        <g
-           style="fill:#4a4a4a"
-           transform="matrix(0.152,0,0,-0.152,474.30253,383.25025)"
-           id="g4011">
-          <use
-             xlink:href="#Avenir-Book-31"
-             transform="translate(0,0.684375)"
-             id="use4005" />
-          <use
-             xlink:href="#Avenir-Book-30"
-             transform="translate(55.599991,0.684375)"
-             id="use4007" />
-          <use
-             xlink:href="#Avenir-Book-37"
-             transform="matrix(0.7,0,0,0.7,112.01893,33.442188)"
-             id="use4009" />
-        </g>
-      </g>
-    </g>
-    <g
-       id="text_22">
-      <!-- $T_A$ -->
-      <g
-         style="fill:#262626"
-         transform="matrix(0.2,0,0,-0.2,429.05588,406.74612)"
-         id="g4019">
-        <path
-           id="use4015"
-           d="M 4.59375,2 Q 4.640625,2.25 4.8125,2.875 4.984375,3.515625 5.25,3.859375 5.515625,4.203125 6,4.203125 q 8.59375,0 11.390625,0.484375 2.671875,0.6875 3.21875,2.890625 L 34.28125,62.5 q 0.4375,1.21875 0.4375,2.203125 0,0.78125 -3.515625,0.78125 h -5.8125 q -6.6875,0 -10.328125,-2.0625 Q 11.421875,61.375 9.71875,58 8.015625,54.640625 5.328125,46.984375 4.984375,46.09375 4.296875,46.09375 h -0.875 q -1.03125,0 -1.03125,1.28125 l 7.125,20.703125 Q 9.71875,69 10.5,69 h 59.078125 q 1.03125,0 1.03125,-1.3125 L 67.28125,46.984375 q 0,-0.296875 -0.34375,-0.59375 -0.328125,-0.296875 -0.625,-0.296875 H 65.375 q -0.96875,0 -0.96875,1.28125 1.078125,7.078125 1.078125,10 0,3.515625 -1.46875,5.3125 -1.46875,1.8125 -3.8125,2.296875 -2.34375,0.5 -6.09375,0.5 H 48.1875 q -2.671875,0 -3.609375,-0.5 Q 43.65625,64.5 43.015625,62.0625 L 29.296875,7.1875 Q 29.25,6.984375 29.21875,6.78125 29.20312,6.59375 29.109375,6.296875 q 0,-1.265625 1.5,-1.609375 2.59375,-0.484375 11.09375,-0.484375 0.96875,0 0.96875,-1.3125 Q 42.328125,1.46875 42.125,1.078125 41.9375,0.6875 41.015625,0.6875 H 5.609375 Q 4.59375,0.6875 4.59375,2 Z"
-           style="stroke-width:0.015625" />
-        <path
-           id="use4017"
-           d="m 61.548438,-16.31875 q -0.689063,0 -0.689063,0.91875 0.273438,1.542187 0.885938,1.542187 2.84375,0 4.910937,1.126563 2.067188,1.126562 3.565625,3.4890625 0.142188,0.13125 0.142188,0.13125 l 24.98125,42.1531245 q 0.546875,0.74375 1.334375,0.74375 h 0.91875 q 0.207813,0 0.415625,-0.0875 0.207812,-0.07656 0.360937,-0.273437 0.153125,-0.185938 0.153125,-0.382813 l 4.232815,-45.226562 q 0,-0.30625 0.30625,-0.91875 0.68906,-0.754688 5.23906,-0.754688 0.71094,0 0.71094,-0.91875 -0.24063,-0.929687 -0.39375,-1.235937 -0.15313,-0.30625 -0.79844,-0.30625 H 90.325001 q -0.65625,0 -0.65625,0.91875 0.382812,1.542187 0.929687,1.542187 5.534375,0 5.873437,1.88125 L 95.410938,-0.4265625 H 78.151563 l -5.6,-9.3953125 q -0.514063,-0.754688 -0.514063,-1.75 0,-1.225 1.18125,-1.760938 1.181251,-0.525 2.614063,-0.525 0.678125,0 0.678125,-0.91875 -0.240625,-0.995312 -0.382813,-1.26875 -0.131249,-0.273437 -0.776562,-0.273437 z M 79.51875,2.034375 H 95.1375 l -2.078125,22.6625 z"
-           style="stroke-width:0.0109375" />
-      </g>
+       style="fill:#262626"
+       transform="matrix(0.2,0,0,-0.2,429.05588,406.74612)"
+       id="g4019">
+      <path
+         id="use4015"
+         d="M 4.59375,2 Q 4.640625,2.25 4.8125,2.875 4.984375,3.515625 5.25,3.859375 5.515625,4.203125 6,4.203125 q 8.59375,0 11.390625,0.484375 2.671875,0.6875 3.21875,2.890625 L 34.28125,62.5 q 0.4375,1.21875 0.4375,2.203125 0,0.78125 -3.515625,0.78125 h -5.8125 q -6.6875,0 -10.328125,-2.0625 Q 11.421875,61.375 9.71875,58 8.015625,54.640625 5.328125,46.984375 4.984375,46.09375 4.296875,46.09375 h -0.875 q -1.03125,0 -1.03125,1.28125 l 7.125,20.703125 Q 9.71875,69 10.5,69 h 59.078125 q 1.03125,0 1.03125,-1.3125 L 67.28125,46.984375 q 0,-0.296875 -0.34375,-0.59375 -0.328125,-0.296875 -0.625,-0.296875 H 65.375 q -0.96875,0 -0.96875,1.28125 1.078125,7.078125 1.078125,10 0,3.515625 -1.46875,5.3125 -1.46875,1.8125 -3.8125,2.296875 -2.34375,0.5 -6.09375,0.5 H 48.1875 q -2.671875,0 -3.609375,-0.5 Q 43.65625,64.5 43.015625,62.0625 L 29.296875,7.1875 Q 29.25,6.984375 29.21875,6.78125 29.20312,6.59375 29.109375,6.296875 q 0,-1.265625 1.5,-1.609375 2.59375,-0.484375 11.09375,-0.484375 0.96875,0 0.96875,-1.3125 Q 42.328125,1.46875 42.125,1.078125 41.9375,0.6875 41.015625,0.6875 H 5.609375 Q 4.59375,0.6875 4.59375,2 Z"
+         style="stroke-width:0.015625" />
+      <path
+         id="use4017"
+         d="m 61.548438,-16.31875 q -0.689063,0 -0.689063,0.91875 0.273438,1.542187 0.885938,1.542187 2.84375,0 4.910937,1.126563 2.067188,1.126562 3.565625,3.4890625 0.142188,0.13125 0.142188,0.13125 l 24.98125,42.1531245 q 0.546875,0.74375 1.334375,0.74375 h 0.91875 q 0.207813,0 0.415625,-0.0875 0.207812,-0.07656 0.360937,-0.273437 0.153125,-0.185938 0.153125,-0.382813 l 4.232815,-45.226562 q 0,-0.30625 0.30625,-0.91875 0.68906,-0.754688 5.23906,-0.754688 0.71094,0 0.71094,-0.91875 -0.24063,-0.929687 -0.39375,-1.235937 -0.15313,-0.30625 -0.79844,-0.30625 H 90.325001 q -0.65625,0 -0.65625,0.91875 0.382812,1.542187 0.929687,1.542187 5.534375,0 5.873437,1.88125 L 95.410938,-0.4265625 H 78.151563 l -5.6,-9.3953125 q -0.514063,-0.754688 -0.514063,-1.75 0,-1.225 1.18125,-1.760938 1.181251,-0.525 2.614063,-0.525 0.678125,0 0.678125,-0.91875 -0.240625,-0.995312 -0.382813,-1.26875 -0.131249,-0.273437 -0.776562,-0.273437 z M 79.51875,2.034375 H 95.1375 l -2.078125,22.6625 z"
+         style="stroke-width:0.0109375" />
     </g>
   </g>
   <g
@@ -11617,10 +11382,10 @@
                xlink:href="#Avenir-Book-2e"
                x="55.599991"
                id="use4258" />
-            <use
-               xlink:href="#Avenir-Book-35"
-               x="83.399979"
-               id="use4260" />
+            <path
+               id="use4260"
+               d="m 129.89998,64.203125 h -29 L 100.49373,42.90625 q 2.3125,0.890625 4.70312,1.28125 2.40625,0.40625 4.79688,0.40625 5,0 9.09375,-1.703125 4.10937,-1.6875 7.0625,-4.75 2.95312,-3.046875 4.59375,-7.203125 1.65625,-4.140625 1.65625,-9.03125 0,-5.109375 -1.79688,-9.359375 -1.79687,-4.25 -5,-7.296875 -3.20312,-3.046875 -7.5625,-4.75 -4.34375,-1.703125 -9.4375,-1.703125 -6.70312,0 -12.109371,3.203125 -5.390625,3.203125 -8.296875,9.40625 L 95.306229,14.5 q 2,-4.203125 5.593751,-6.65625 3.59375,-2.4375 8.29687,-2.4375 3.40625,0 6.29688,1.25 2.90625,1.25 5.04687,3.34375 2.15625,2.09375 3.40625,5 1.25,2.90625 1.25,6.203125 0,3.703125 -1.29687,6.796875 -1.29688,3.09375 -3.60938,5.34375 -2.29687,2.25 -5.5,3.453125 Q 111.6031,38 107.80623,38 q -3.8125,0 -7.5625,-1.046875 -3.750001,-1.046875 -7.140626,-2.859375 l 0.703125,36.703125 h 36.093751 z"
+               style="stroke-width:0.015625" />
           </g>
         </g>
       </g>
@@ -12666,10 +12431,10 @@
            xlink:href="#Avenir-Book-2e"
            x="55.599991"
            id="use4665" />
-        <use
-           xlink:href="#Avenir-Book-35"
-           x="83.399979"
-           id="use4667" />
+        <path
+           id="use4667"
+           d="m 129.89998,64.203125 h -29 L 100.49373,42.90625 q 2.3125,0.890625 4.70312,1.28125 2.40625,0.40625 4.79688,0.40625 5,0 9.09375,-1.703125 4.10937,-1.6875 7.0625,-4.75 2.95312,-3.046875 4.59375,-7.203125 1.65625,-4.140625 1.65625,-9.03125 0,-5.109375 -1.79688,-9.359375 -1.79687,-4.25 -5,-7.296875 -3.20312,-3.046875 -7.5625,-4.75 -4.34375,-1.703125 -9.4375,-1.703125 -6.70312,0 -12.109371,3.203125 -5.390625,3.203125 -8.296875,9.40625 L 95.306229,14.5 q 2,-4.203125 5.593751,-6.65625 3.59375,-2.4375 8.29687,-2.4375 3.40625,0 6.29688,1.25 2.90625,1.25 5.04687,3.34375 2.15625,2.09375 3.40625,5 1.25,2.90625 1.25,6.203125 0,3.703125 -1.29687,6.796875 -1.29688,3.09375 -3.60938,5.34375 -2.29687,2.25 -5.5,3.453125 Q 111.6031,38 107.80623,38 q -3.8125,0 -7.5625,-1.046875 -3.750001,-1.046875 -7.140626,-2.859375 l 0.703125,36.703125 h 36.093751 z"
+           style="stroke-width:0.015625" />
       </g>
     </g>
   </g>
@@ -13294,6 +13059,276 @@
          transform="matrix(0.7,0,0,0.7,334.54266,38.373438)"
          id="use1673-3"
          style="stroke-linecap:butt;stroke-linejoin:round" />
+    </g>
+  </g>
+  <g
+     id="matplotlib.axis_3-7"
+     style="stroke-linecap:butt;stroke-linejoin:round"
+     transform="translate(4.22625,0.023987)">
+    <g
+       id="xtick_4-9"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         id="line2d_18-3"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <g
+           id="g1694"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <path
+             id="use1694"
+             d="m 392.50027,173.26451 v 3"
+             style="fill:#878787;stroke:#878787;stroke-width:1.1;stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+      <g
+         id="text_14-8"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <!-- $\mathdefault{10^{0}}$ -->
+        <g
+           style="fill:#4a4a4a;stroke-linecap:butt;stroke-linejoin:round"
+           transform="matrix(0.152,0,0,-0.152,380.79628,188.95477)"
+           id="g1697">
+          <use
+             xlink:href="#Avenir-Book-31"
+             transform="translate(0,0.842187)"
+             id="use1695-0"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-30"
+             transform="translate(55.599991,0.842187)"
+             id="use1696"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-30"
+             transform="matrix(0.7,0,0,0.7,112.01893,33.6)"
+             id="use1697-2"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="xtick_5-4"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         id="line2d_19-8"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <g
+           id="g1698"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <path
+             id="use1698"
+             d="m 437.14029,173.26451 v 3"
+             style="fill:#878787;stroke:#878787;stroke-width:1.1;stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+      <g
+         id="text_15-3"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <!-- $\mathdefault{10^{2}}$ -->
+        <g
+           style="fill:#4a4a4a;stroke-linecap:butt;stroke-linejoin:round"
+           transform="matrix(0.152,0,0,-0.152,425.43628,188.95477)"
+           id="g1701">
+          <use
+             xlink:href="#Avenir-Book-31"
+             transform="translate(0,0.842187)"
+             id="use1699-9"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-30"
+             transform="translate(55.599991,0.842187)"
+             id="use1700"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-32"
+             transform="matrix(0.7,0,0,0.7,112.01893,33.6)"
+             id="use1701-0"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="xtick_6-5"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         id="line2d_20-2"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <g
+           id="g1702"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <path
+             id="use1702"
+             d="m 481.78027,173.26451 v 3"
+             style="fill:#878787;stroke:#878787;stroke-width:1.1;stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+      <g
+         id="text_16-2"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <!-- $\mathdefault{10^{4}}$ -->
+        <g
+           style="fill:#4a4a4a;stroke-linecap:butt;stroke-linejoin:round"
+           transform="matrix(0.152,0,0,-0.152,470.07628,188.95477)"
+           id="g1705">
+          <defs
+             id="defs1702">
+            <path
+               id="path6"
+               d="m 2202,4070 h -13 L 627,1498 h 1575 z m 460,-2572 h 653 V 1075 H 2662 V 0 H 2202 V 1075 H 243 v 525 l 1831,2931 h 588 z"
+               transform="scale(0.015625)" />
+          </defs>
+          <use
+             xlink:href="#Avenir-Book-31"
+             transform="translate(0,0.684375)"
+             id="use1703-3"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-30"
+             transform="translate(55.599991,0.684375)"
+             id="use1704"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-34-7"
+             transform="matrix(0.7,0,0,0.7,112.01893,33.442188)"
+             id="use1705-7"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+    </g>
+  </g>
+  <g
+     id="matplotlib.axis_3-7-7"
+     style="stroke-linecap:butt;stroke-linejoin:round"
+     transform="translate(4.22625,194.31947)">
+    <g
+       id="xtick_4-9-0"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         id="line2d_18-3-3"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <g
+           id="g1694-9"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <path
+             id="use1694-8"
+             d="m 392.50027,173.26451 v 3"
+             style="fill:#878787;stroke:#878787;stroke-width:1.1;stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+      <g
+         id="text_14-8-6"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <!-- $\mathdefault{10^{0}}$ -->
+        <g
+           style="fill:#4a4a4a;stroke-linecap:butt;stroke-linejoin:round"
+           transform="matrix(0.152,0,0,-0.152,380.79628,188.95477)"
+           id="g1697-5">
+          <use
+             xlink:href="#Avenir-Book-31"
+             transform="translate(0,0.842187)"
+             id="use1695-0-7"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-30"
+             transform="translate(55.599991,0.842187)"
+             id="use1696-6"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-30"
+             transform="matrix(0.7,0,0,0.7,112.01893,33.6)"
+             id="use1697-2-2"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="xtick_5-4-7"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         id="line2d_19-8-0"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <g
+           id="g1698-3"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <path
+             id="use1698-9"
+             d="m 437.14029,173.26451 v 3"
+             style="fill:#878787;stroke:#878787;stroke-width:1.1;stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+      <g
+         id="text_15-3-9"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <!-- $\mathdefault{10^{2}}$ -->
+        <g
+           style="fill:#4a4a4a;stroke-linecap:butt;stroke-linejoin:round"
+           transform="matrix(0.152,0,0,-0.152,425.43628,188.95477)"
+           id="g1701-9">
+          <use
+             xlink:href="#Avenir-Book-31"
+             transform="translate(0,0.842187)"
+             id="use1699-9-1"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-30"
+             transform="translate(55.599991,0.842187)"
+             id="use1700-7"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-32"
+             transform="matrix(0.7,0,0,0.7,112.01893,33.6)"
+             id="use1701-0-2"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="xtick_6-5-3"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         id="line2d_20-2-6"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <g
+           id="g1702-5"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <path
+             id="use1702-5"
+             d="m 481.78027,173.26451 v 3"
+             style="fill:#878787;stroke:#878787;stroke-width:1.1;stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
+      <g
+         id="text_16-2-8"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <!-- $\mathdefault{10^{4}}$ -->
+        <g
+           style="fill:#4a4a4a;stroke-linecap:butt;stroke-linejoin:round"
+           transform="matrix(0.152,0,0,-0.152,470.07628,188.95477)"
+           id="g1705-1">
+          <defs
+             id="defs1702-4">
+            <path
+               id="path7"
+               d="m 2202,4070 h -13 L 627,1498 h 1575 z m 460,-2572 h 653 V 1075 H 2662 V 0 H 2202 V 1075 H 243 v 525 l 1831,2931 h 588 z"
+               transform="scale(0.015625)" />
+          </defs>
+          <use
+             xlink:href="#Avenir-Book-31"
+             transform="translate(0,0.684375)"
+             id="use1703-3-1"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-30"
+             transform="translate(55.599991,0.684375)"
+             id="use1704-3"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+          <use
+             xlink:href="#Avenir-Book-34-7"
+             transform="matrix(0.7,0,0,0.7,112.01893,33.442188)"
+             id="use1705-7-8"
+             style="stroke-linecap:butt;stroke-linejoin:round" />
+        </g>
+      </g>
     </g>
   </g>
 </svg>
