@@ -22,7 +22,7 @@ dt = 1e-3
 Nsteps_array = np.array([3, 4, 5, 6, 7])
 Nsteps_array = 10**Nsteps_array
 
-empirical = False
+empirical = True
 
 for Nsteps in Nsteps_array:
     print('Nsteps = %d' % Nsteps)

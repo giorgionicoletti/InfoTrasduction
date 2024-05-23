@@ -45,9 +45,9 @@ def simulate_xyeta(Nsteps, dt, sigma, a, theta_eta, tau_x = 1, theta_y = 1, x0 =
 
     tau_y = theta_y * tau_x
     tau_eta = theta_eta * tau_x
-    sqtau_x = np.sqrt(dt/tau_x)
-    sqtau_y = np.sqrt(dt/tau_y)
-    sqtau_eta = np.sqrt(dt/tau_eta)
+    sqtau_x = np.sqrt(2*dt/tau_x)
+    sqtau_y = np.sqrt(2*dt/tau_y)
+    sqtau_eta = np.sqrt(2*dt/tau_eta)
 
     x[0] = x0
     y[0] = y0
@@ -352,11 +352,85 @@ def find_functional(Nsteps, dt, sigma, a, theta_eta, Lambda, x0, y0, eta0, tau_x
 
     return -(1 - Lambda)*Sxy/(Nsteps - 1) + Lambda*Ixy/(Nsteps - 1), x[-1], y[-1], eta[-1], Sxy, Ixy
 
+@njit
+def find_functional_empirical(Nsteps, dt, sigma, a, theta_eta,
+                              Lambda, x0, y0, eta0, tau_x = 1, theta_y = 1):
+    """
+    Finds the Pareto functional from a simualted trajectory of x and y.
+    Instead of the theoretical distribution, it uses the empirical distribution
+    estimated form the numerical covariance matrix.
+
+    Parameters
+    ----------
+    Nsteps : int
+        Number of steps to simulate.
+    dt : float
+        Time step.
+    sigma : float
+        Coupling between x -> eta.
+    a : float
+        Coupling between y -> x.
+    theta_eta : float
+        Time scale of eta.
+    Lambda : float
+        Tradeoff parameter.
+    x0 : float
+        Initial value of x.
+    y0 : float
+        Initial value of y.
+    eta0 : float
+        Initial value of eta.
+    tau_x : float
+        Time scale of x.
+    theta_y : float
+        Time scale of y.
+
+    Returns
+    -------
+    functional : float
+        Pareto functional.
+    x0 : float
+        Final value of x.
+    y0 : float
+        Final value of y.
+    eta0 : float
+        Final value of eta.
+    Sxy : float
+        Dissipation rate of the marginalized xy process.
+    Ixy : float
+        Mutual information of the marginalized xy process.
+    """
+    x, y, eta = simulate_xyeta(Nsteps, dt, sigma, a, theta_eta, tau_x, theta_y, x0, y0, eta0)
+
+    Amat = find_Axy(sigma, theta_eta, a)
+    cov = np.cov(x, y)
+    det = np.linalg.det(cov)
+    cov_inv = np.linalg.inv(cov)
+
+    Sxy = 0.
+    Ixy = 0.
+
+    for t in range(Nsteps-1):
+        Delta_x = x[t+1] - x[t]
+        Delta_y = y[t+1] - y[t]
+        Strat_x = 1/2*(x[t+1] + x[t])
+        Strat_y = 1/2*(y[t+1] + y[t])
+
+        Sxy += -2*(Amat[0,0]*Strat_x + Amat[0,1]*Strat_y)*Delta_x/dt
+        Sxy += -2*(Amat[1,0]*Strat_x + Amat[1,1]*Strat_y)*Delta_y/dt
+
+        pjoint_curr = probability_xy(x[t], y[t], det, cov_inv)
+        px_curr = probability_x(x[t], cov)
+        py_curr = probability_y(y[t], cov)
+        Ixy += np.log(pjoint_curr / (px_curr * py_curr))
+
+    return -(1 - Lambda)*Sxy/(Nsteps - 1) + Lambda*Ixy/(Nsteps - 1), x[-1], y[-1], eta[-1], Sxy, Ixy
 
 @njit
 def adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
                       Ncheck = 2000, Nadapt_min = 5000, Nadapt_max = 10000,
-                      a_init = 0., tau_x = 1, theta_y = 1, Nburn = 100000):
+                      a_init = 0., tau_x = 1, theta_y = 1, Nburn = 100000,
+                      empirical = False):
     
     x0_burn, y0_burn, eta0_burn = simulate_xyeta(Nburn, dt, sigma, a_init, theta_eta, tau_x, theta_y)
     x0 = x0_burn[-1]
@@ -379,7 +453,10 @@ def adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
 
     for idx_adapt in range(1, Nadapt_max):
         a_bar = a_adapt[idx_adapt - 1] + delta_a * np.random.randn()
-        L_bar, x0, y0, eta0, Sxy, Ixy = find_functional(Nsteps, dt, sigma, a_bar, theta_eta, Lambda, x0, y0, eta0, tau_x, theta_y)
+        if empirical:
+            L_bar, x0, y0, eta0, Sxy, Ixy = find_functional_empirical(Nsteps, dt, sigma, a_bar, theta_eta, Lambda, x0, y0, eta0, tau_x, theta_y)
+        else:
+            L_bar, x0, y0, eta0, Sxy, Ixy = find_functional(Nsteps, dt, sigma, a_bar, theta_eta, Lambda, x0, y0, eta0, tau_x, theta_y)
 
         Sxy_adapt[idx_adapt] = Sxy
         Ixy_adapt[idx_adapt] = Ixy        
@@ -404,7 +481,8 @@ def adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
 @njit(parallel = True)
 def repeat_adaptive_dynamics(Nrepeat, Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
                              Ncheck = 2000, Nadapt_min = 5000, Nadapt_max = 10000,
-                             a_init = 0., tau_x = 1, theta_y = 1, Nburn = 100000):
+                             a_init = 0., tau_x = 1, theta_y = 1, Nburn = 100000,
+                             empirical = False):
     a_adapt = np.zeros((Nrepeat, Nadapt_max), dtype = np.float64)
     L_adapt = np.zeros((Nrepeat, Nadapt_max), dtype = np.float64)
     Ixy_adapt = np.zeros((Nrepeat, Nadapt_max), dtype = np.float64)
@@ -414,7 +492,8 @@ def repeat_adaptive_dynamics(Nrepeat, Nsteps, dt, sigma, theta_eta, Lambda, delt
     for idx_repeat in prange(Nrepeat):
         res = adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
                                 Ncheck, Nadapt_min, Nadapt_max,
-                                a_init, tau_x, theta_y, Nburn)
+                                a_init, tau_x, theta_y, Nburn,
+                                empirical = empirical)
         a_adapt[idx_repeat], L_adapt[idx_repeat], Ixy_adapt[idx_repeat], Sxy_adapt[idx_repeat], stop_time_adapt[idx_repeat] = res
 
     return a_adapt, L_adapt, Ixy_adapt, Sxy_adapt, stop_time_adapt
