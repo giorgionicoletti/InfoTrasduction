@@ -1,6 +1,35 @@
 import numpy as np
 from numba import njit, prange
 
+@njit(nogil=True, parallel=False)
+def hist2d_numba_seq(tracks, bins, ranges):
+    H = np.zeros((bins[0], bins[1]), dtype=np.uint64)
+    delta = 1 / ((ranges[:, 1] - ranges[:, 0]) / bins)
+
+    for t in range(tracks.shape[1]):
+        i = (tracks[0, t] - ranges[0, 0]) * delta[0]
+        j = (tracks[1, t] - ranges[1, 0]) * delta[1]
+        if 0 <= i < bins[0] and 0 <= j < bins[1]:
+            H[int(i), int(j)] += 1
+
+    dx = (ranges[0, 1] - ranges[0, 0]) / bins[0]
+    dy = (ranges[1, 1] - ranges[1, 0]) / bins[1]
+
+    return H/np.sum(H*dx*dy)
+
+@njit
+def numba_log_zero(array):
+    # returns the lof of each element of the array, if the element is zero, returns zero
+    # the array is 2D
+    N = array.shape[0]
+    M = array.shape[1]
+    out = np.zeros((N, M))
+    for i in range(N):
+        for j in range(M):
+            if array[i, j] > 0:
+                out[i, j] = np.log(array[i, j])
+
+    return out
 
 @njit
 def simulate_xyeta(Nsteps, dt, sigma, a, theta_eta, tau_x = 1, theta_y = 1, x0 = 0, y0 = 0, eta0 = 0):
@@ -353,8 +382,8 @@ def find_functional(Nsteps, dt, sigma, a, theta_eta, Lambda, x0, y0, eta0, tau_x
     return -(1 - Lambda)*Sxy/(Nsteps - 1) + Lambda*Ixy/(Nsteps - 1), x[-1], y[-1], eta[-1], Sxy, Ixy
 
 @njit
-def find_functional_empirical(Nsteps, dt, sigma, a, theta_eta,
-                              Lambda, x0, y0, eta0, tau_x = 1, theta_y = 1):
+def find_functional_empirical_cov(Nsteps, dt, sigma, a, theta_eta,
+                                  Lambda, x0, y0, eta0, tau_x = 1, theta_y = 1):
     """
     Finds the Pareto functional from a simualted trajectory of x and y.
     Instead of the theoretical distribution, it uses the empirical distribution
@@ -430,7 +459,7 @@ def find_functional_empirical(Nsteps, dt, sigma, a, theta_eta,
 def adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
                       Ncheck = 2000, Nadapt_min = 5000, Nadapt_max = 10000,
                       a_init = 0., tau_x = 1, theta_y = 1, Nburn = 100000,
-                      empirical = False):
+                      empirical_cov = False):
     
     x0_burn, y0_burn, eta0_burn = simulate_xyeta(Nburn, dt, sigma, a_init, theta_eta, tau_x, theta_y)
     x0 = x0_burn[-1]
@@ -453,8 +482,8 @@ def adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
 
     for idx_adapt in range(1, Nadapt_max):
         a_bar = a_adapt[idx_adapt - 1] + delta_a * np.random.randn()
-        if empirical:
-            L_bar, x0, y0, eta0, Sxy, Ixy = find_functional_empirical(Nsteps, dt, sigma, a_bar, theta_eta, Lambda, x0, y0, eta0, tau_x, theta_y)
+        if empirical_cov:
+            L_bar, x0, y0, eta0, Sxy, Ixy = find_functional_empirical_cov(Nsteps, dt, sigma, a_bar, theta_eta, Lambda, x0, y0, eta0, tau_x, theta_y)
         else:
             L_bar, x0, y0, eta0, Sxy, Ixy = find_functional(Nsteps, dt, sigma, a_bar, theta_eta, Lambda, x0, y0, eta0, tau_x, theta_y)
 
@@ -482,7 +511,7 @@ def adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
 def repeat_adaptive_dynamics(Nrepeat, Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
                              Ncheck = 2000, Nadapt_min = 5000, Nadapt_max = 10000,
                              a_init = 0., tau_x = 1, theta_y = 1, Nburn = 100000,
-                             empirical = False):
+                             empirical_cov = False):
     a_adapt = np.zeros((Nrepeat, Nadapt_max), dtype = np.float64)
     L_adapt = np.zeros((Nrepeat, Nadapt_max), dtype = np.float64)
     Ixy_adapt = np.zeros((Nrepeat, Nadapt_max), dtype = np.float64)
@@ -493,7 +522,7 @@ def repeat_adaptive_dynamics(Nrepeat, Nsteps, dt, sigma, theta_eta, Lambda, delt
         res = adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
                                 Ncheck, Nadapt_min, Nadapt_max,
                                 a_init, tau_x, theta_y, Nburn,
-                                empirical = empirical)
+                                empirical_cov = empirical_cov)
         a_adapt[idx_repeat], L_adapt[idx_repeat], Ixy_adapt[idx_repeat], Sxy_adapt[idx_repeat], stop_time_adapt[idx_repeat] = res
 
     return a_adapt, L_adapt, Ixy_adapt, Sxy_adapt, stop_time_adapt
@@ -550,6 +579,8 @@ def Iyeta_exact(sigma, a, theta_eta):
     num = (2 + a**2)*theta**4 + a**2*theta_eta*theta**2*(1 + 2*theta_eta)*sigma**2
 
     return 1/2*np.log(num/den)
+
+
 
 
 
