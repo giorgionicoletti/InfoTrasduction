@@ -18,9 +18,7 @@ def hist2d_numba_seq(tracks, bins, ranges):
     return H/np.sum(H*dx*dy)
 
 @njit
-def numba_log_zero(array):
-    # returns the lof of each element of the array, if the element is zero, returns zero
-    # the array is 2D
+def numba_log_zero_arr(array):
     N = array.shape[0]
     M = array.shape[1]
     out = np.zeros((N, M))
@@ -30,6 +28,21 @@ def numba_log_zero(array):
                 out[i, j] = np.log(array[i, j])
 
     return out
+
+@njit
+def numba_log_zero_val(val):
+    if val > 0:
+        return np.log(val)
+    else:
+        return 0
+
+@njit
+def find_bin(val, bins):
+    for i in range(len(bins) - 1):
+        if bins[i] <= val < bins[i + 1]:
+            return i
+
+    return -1
 
 @njit
 def simulate_xyeta(Nsteps, dt, sigma, a, theta_eta, tau_x = 1, theta_y = 1, x0 = 0, y0 = 0, eta0 = 0):
@@ -371,15 +384,15 @@ def find_functional(Nsteps, dt, sigma, a, theta_eta, Lambda, x0, y0, eta0, tau_x
         Strat_x = 1/2*(x[t+1] + x[t])
         Strat_y = 1/2*(y[t+1] + y[t])
 
-        Sxy += -2*(Amat[0,0]*Strat_x + Amat[0,1]*Strat_y)*Delta_x/dt
-        Sxy += -2*(Amat[1,0]*Strat_x + Amat[1,1]*Strat_y)*Delta_y/dt
+        Sxy += -(Amat[0,0]*Strat_x + Amat[0,1]*Strat_y)*Delta_x/dt
+        Sxy += -(Amat[1,0]*Strat_x + Amat[1,1]*Strat_y)*Delta_y/dt
 
         pjoint_curr = probability_xy(x[t], y[t], det, cov_inv)
         px_curr = probability_x(x[t], cov)
         py_curr = probability_y(y[t], cov)
         Ixy += np.log(pjoint_curr / (px_curr * py_curr))
 
-    return -(1 - Lambda)*Sxy/(Nsteps - 1) + Lambda*Ixy/(Nsteps - 1), x[-1], y[-1], eta[-1], Sxy, Ixy
+    return -(1 - Lambda)*Sxy/(Nsteps - 1) + Lambda*Ixy/(Nsteps - 1), x[-1], y[-1], eta[-1], Sxy/(Nsteps - 1), Ixy/(Nsteps - 1)
 
 @njit
 def find_functional_empirical_cov(Nsteps, dt, sigma, a, theta_eta,
@@ -445,21 +458,109 @@ def find_functional_empirical_cov(Nsteps, dt, sigma, a, theta_eta,
         Strat_x = 1/2*(x[t+1] + x[t])
         Strat_y = 1/2*(y[t+1] + y[t])
 
-        Sxy += -2*(Amat[0,0]*Strat_x + Amat[0,1]*Strat_y)*Delta_x/dt
-        Sxy += -2*(Amat[1,0]*Strat_x + Amat[1,1]*Strat_y)*Delta_y/dt
+        Sxy += -(Amat[0,0]*Strat_x + Amat[0,1]*Strat_y)*Delta_x/dt
+        Sxy += -(Amat[1,0]*Strat_x + Amat[1,1]*Strat_y)*Delta_y/dt
 
         pjoint_curr = probability_xy(x[t], y[t], det, cov_inv)
         px_curr = probability_x(x[t], cov)
         py_curr = probability_y(y[t], cov)
         Ixy += np.log(pjoint_curr / (px_curr * py_curr))
 
-    return -(1 - Lambda)*Sxy/(Nsteps - 1) + Lambda*Ixy/(Nsteps - 1), x[-1], y[-1], eta[-1], Sxy, Ixy
+    return -(1 - Lambda)*Sxy/(Nsteps - 1) + Lambda*Ixy/(Nsteps - 1), x[-1], y[-1], eta[-1], Sxy/(Nsteps - 1), Ixy/(Nsteps - 1)
+
+@njit
+def find_functional_empirical(Nsteps, dt, sigma, a, theta_eta,
+                              Lambda, x0, y0, eta0, tau_x = 1, theta_y = 1,
+                              bins_num = 500):
+    """
+    Finds the Pareto functional from a simualted trajectory of x and y.
+    Instead of the theoretical distribution, it uses the empirical distribution
+    estimated form the trajectories.
+
+    Parameters
+    ----------
+    Nsteps : int
+        Number of steps to simulate.
+    dt : float
+        Time step.
+    sigma : float
+        Coupling between x -> eta.
+    a : float
+        Coupling between y -> x.
+    theta_eta : float
+        Time scale of eta.
+    Lambda : float
+        Tradeoff parameter.
+    x0 : float
+        Initial value of x.
+    y0 : float
+        Initial value of y.
+    eta0 : float
+        Initial value of eta.
+    tau_x : float
+        Time scale of x.
+    theta_y : float
+        Time scale of y.
+
+    Returns
+    -------
+    functional : float
+        Pareto functional.
+    x0 : float
+        Final value of x.
+    y0 : float
+        Final value of y.
+    eta0 : float
+        Final value of eta.
+    Sxy : float
+        Dissipation rate of the marginalized xy process.
+    Ixy : float
+        Mutual information of the marginalized xy process.
+    """
+    x, y, eta = simulate_xyeta(Nsteps, dt, sigma, a, theta_eta, tau_x, theta_y, x0, y0, eta0)
+
+    Amat = find_Axy(sigma, theta_eta, a)
+
+    bins = np.array((bins_num, bins_num))
+    ranges = np.array(((np.min(x), np.max(x)), (np.min(y), np.max(y))))
+    xbins_space = np.linspace(ranges[0, 0], ranges[0, 1], bins[0])
+    ybins_space = np.linspace(ranges[1, 0], ranges[1, 1], bins[1])
+
+    dx = (ranges[0, 1] - ranges[0, 0]) / bins[0]
+    dy = (ranges[1, 1] - ranges[1, 0]) / bins[1]
+
+    pxy_emp = hist2d_numba_seq(np.vstack((x,y)), bins=bins, ranges=ranges)
+    px_emp = np.sum(pxy_emp*dy, axis = 0)
+    py_emp = np.sum(pxy_emp*dx, axis = 1)
+
+    Sxy = 0.
+    Ixy = 0.
+
+    for t in range(Nsteps-1):
+        Delta_x = x[t+1] - x[t]
+        Delta_y = y[t+1] - y[t]
+        Strat_x = 1/2*(x[t+1] + x[t])
+        Strat_y = 1/2*(y[t+1] + y[t])
+
+        Sxy += -(Amat[0,0]*Strat_x + Amat[0,1]*Strat_y)*Delta_x/dt
+        Sxy += -(Amat[1,0]*Strat_x + Amat[1,1]*Strat_y)*Delta_y/dt
+
+        xbin = find_bin(x[t], xbins_space)
+        ybin = find_bin(y[t], ybins_space)
+        pjoint_curr = pxy_emp[xbin, ybin]
+        px_curr = px_emp[xbin]
+        py_curr = py_emp[ybin]
+
+        if px_curr * py_curr > 0 and pjoint_curr > 0:
+            Ixy += numba_log_zero_val(pjoint_curr) - numba_log_zero_val(px_curr * py_curr)
+
+    return -(1 - Lambda)*Sxy/(Nsteps - 1) + Lambda*Ixy/(Nsteps - 1), x[-1], y[-1], eta[-1], Sxy/(Nsteps - 1), Ixy/(Nsteps - 1)
 
 @njit
 def adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
                       Ncheck = 2000, Nadapt_min = 5000, Nadapt_max = 10000,
                       a_init = 0., tau_x = 1, theta_y = 1, Nburn = 100000,
-                      empirical_cov = False):
+                      empirical_cov = False, empirical = False):
     
     x0_burn, y0_burn, eta0_burn = simulate_xyeta(Nburn, dt, sigma, a_init, theta_eta, tau_x, theta_y)
     x0 = x0_burn[-1]
@@ -484,6 +585,8 @@ def adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
         a_bar = a_adapt[idx_adapt - 1] + delta_a * np.random.randn()
         if empirical_cov:
             L_bar, x0, y0, eta0, Sxy, Ixy = find_functional_empirical_cov(Nsteps, dt, sigma, a_bar, theta_eta, Lambda, x0, y0, eta0, tau_x, theta_y)
+        elif empirical:
+            L_bar, x0, y0, eta0, Sxy, Ixy = find_functional_empirical(Nsteps, dt, sigma, a_bar, theta_eta, Lambda, x0, y0, eta0, tau_x, theta_y)
         else:
             L_bar, x0, y0, eta0, Sxy, Ixy = find_functional(Nsteps, dt, sigma, a_bar, theta_eta, Lambda, x0, y0, eta0, tau_x, theta_y)
 
@@ -511,7 +614,7 @@ def adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
 def repeat_adaptive_dynamics(Nrepeat, Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
                              Ncheck = 2000, Nadapt_min = 5000, Nadapt_max = 10000,
                              a_init = 0., tau_x = 1, theta_y = 1, Nburn = 100000,
-                             empirical_cov = False):
+                             empirical_cov = False, empirical = False):
     a_adapt = np.zeros((Nrepeat, Nadapt_max), dtype = np.float64)
     L_adapt = np.zeros((Nrepeat, Nadapt_max), dtype = np.float64)
     Ixy_adapt = np.zeros((Nrepeat, Nadapt_max), dtype = np.float64)
@@ -522,7 +625,8 @@ def repeat_adaptive_dynamics(Nrepeat, Nsteps, dt, sigma, theta_eta, Lambda, delt
         res = adaptive_dynamics(Nsteps, dt, sigma, theta_eta, Lambda, delta_a,
                                 Ncheck, Nadapt_min, Nadapt_max,
                                 a_init, tau_x, theta_y, Nburn,
-                                empirical_cov = empirical_cov)
+                                empirical_cov = empirical_cov,
+                                empirical = empirical)
         a_adapt[idx_repeat], L_adapt[idx_repeat], Ixy_adapt[idx_repeat], Sxy_adapt[idx_repeat], stop_time_adapt[idx_repeat] = res
 
     return a_adapt, L_adapt, Ixy_adapt, Sxy_adapt, stop_time_adapt
