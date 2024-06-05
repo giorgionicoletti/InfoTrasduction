@@ -8,9 +8,9 @@ import funAdapt as fa
 import time as measure_time
 
 Nadapt_max = 50000
-Nadapt_min = 10000
+Nadapt_min = 5000
 Ncheck = 5000
-Nrepeat = 320
+Nrepeat = 96
 sigma = 1.5
 theta_eta = 3.
 

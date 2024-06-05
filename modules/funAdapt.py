@@ -471,7 +471,7 @@ def find_functional_empirical_cov(Nsteps, dt, sigma, a, theta_eta,
 @njit
 def find_functional_empirical(Nsteps, dt, sigma, a, theta_eta,
                               Lambda, x0, y0, eta0, tau_x = 1, theta_y = 1,
-                              bins_num = 500):
+                              bins_num = 100):
     """
     Finds the Pareto functional from a simualted trajectory of x and y.
     Instead of the theoretical distribution, it uses the empirical distribution
@@ -530,8 +530,9 @@ def find_functional_empirical(Nsteps, dt, sigma, a, theta_eta,
     dy = (ranges[1, 1] - ranges[1, 0]) / bins[1]
 
     pxy_emp = hist2d_numba_seq(np.vstack((x,y)), bins=bins, ranges=ranges)
-    px_emp = np.sum(pxy_emp*dy, axis = 0)
-    py_emp = np.sum(pxy_emp*dx, axis = 1)
+
+    py_emp = np.sum(pxy_emp*dx, axis = 0)
+    px_emp = np.sum(pxy_emp*dy, axis = 1)
 
     Sxy = 0.
     Ixy = 0.
