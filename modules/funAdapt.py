@@ -654,6 +654,11 @@ def Sxyeta_exact(sigma, a, theta_eta):
     return a**2/2 + (2 + theta_eta*(2+a**2))/theta**2*sigma**2/2
 
 @njit
+def Sdota_exact(sigma, a, theta_eta):
+    theta = 1 + theta_eta
+    return a**2/2*(1 + theta_eta*(2 + sigma**2 + theta_eta))/theta**2
+
+@njit
 def Sxy_exact(sigma, a, theta_eta):
     theta = 1 + theta_eta
 
