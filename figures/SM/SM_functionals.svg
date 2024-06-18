@@ -28,9 +28,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="pt"
-     inkscape:zoom="1.6785906"
-     inkscape:cx="891.52172"
-     inkscape:cy="824.50121"
+     inkscape:zoom="1.2795642"
+     inkscape:cx="490.40134"
+     inkscape:cy="106.28619"
      inkscape:window-width="2752"
      inkscape:window-height="1023"
      inkscape:window-x="1080"
@@ -5020,4 +5020,37 @@
          id="use430" />
     </g>
   </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Avenir;-inkscape-font-specification:Avenir;fill:#000000;fill-opacity:1;stroke:#aa0816;stroke-width:1.698;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:6.79201, 5.094;stroke-dashoffset:0;stroke-opacity:1"
+     x="5.6906662"
+     y="23.084999"
+     id="text287-0-1-0"><tspan
+       sodipodi:role="line"
+       id="tspan287-6-5-5"
+       style="font-size:16px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.698"
+       x="5.6906662"
+       y="23.084999">(a)</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Avenir;-inkscape-font-specification:Avenir;fill:#000000;fill-opacity:1;stroke:#aa0816;stroke-width:1.698;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:6.79201, 5.094;stroke-dashoffset:0;stroke-opacity:1"
+     x="4.9546738"
+     y="263.32501"
+     id="text287-0-1-0-3"><tspan
+       sodipodi:role="line"
+       id="tspan287-6-5-5-8"
+       style="font-size:16px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.698"
+       x="4.9546738"
+       y="263.32501">(b)</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Avenir;-inkscape-font-specification:Avenir;fill:#000000;fill-opacity:1;stroke:#aa0816;stroke-width:1.698;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:6.79201, 5.094;stroke-dashoffset:0;stroke-opacity:1"
+     x="5.9866714"
+     y="503.565"
+     id="text287-0-1-0-2"><tspan
+       sodipodi:role="line"
+       id="tspan287-6-5-5-4"
+       style="font-size:16px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.698"
+       x="5.9866714"
+       y="503.565">(c)</tspan></text>
 </svg>
