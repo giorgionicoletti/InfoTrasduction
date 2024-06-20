@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="61.350365mm"
-   height="29.32mm"
-   viewBox="0 0 61.350365 29.319999"
+   width="61.349998mm"
+   height="27.876875mm"
+   viewBox="0 0 61.349999 27.876874"
    version="1.1"
    id="svg42021"
    sodipodi:docname="figure1.svg"
@@ -30,15 +30,15 @@
      inkscape:document-units="mm"
      showgrid="false"
      showguides="true"
-     inkscape:zoom="3.6123549"
-     inkscape:cx="142.28945"
-     inkscape:cy="45.538161"
-     inkscape:window-width="1512"
-     inkscape:window-height="840"
-     inkscape:window-x="0"
-     inkscape:window-y="38"
+     inkscape:zoom="3.2254946"
+     inkscape:cx="178.11222"
+     inkscape:cy="38.753746"
+     inkscape:window-width="2752"
+     inkscape:window-height="1023"
+     inkscape:window-x="1080"
+     inkscape:window-y="345"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g66060" /><defs
+     inkscape:current-layer="layer1" /><defs
      id="defs42018"><marker
    style="overflow:visible"
    id="TriangleStart"
@@ -205,13 +205,13 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.417564,-45.113819)"><rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.310755;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+     transform="translate(-17.417747,-45.766415)"><rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.303011;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
        id="rect66074"
        width="61.349998"
-       height="29.32"
+       height="27.876875"
        x="17.417747"
-       y="45.113819" /><g
+       y="45.766415" /><g
        id="g66060"><text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944px;font-family:Avenir;-inkscape-font-specification:Avenir;fill:#000000;fill-opacity:1;stroke:#aa0816;stroke-width:0.599017;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.39607, 1.79705;stroke-dashoffset:0;stroke-opacity:1"
@@ -606,7 +606,7 @@
            sodipodi:role="line"
            style="fill:#dc6400;fill-opacity:1;stroke-width:0.182"
            x="32.230042"
-           y="49.738438"
+           y="49.738441"
            id="tspan62458">probe</tspan></text><text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.94028px;line-height:1.1;font-family:Avenir;-inkscape-font-specification:Avenir;text-align:center;text-anchor:middle;fill:#000055;fill-opacity:0.827451;stroke:none;stroke-width:0.182;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
@@ -621,7 +621,7 @@
            sodipodi:role="line"
            style="fill:#000055;fill-opacity:0.827451;stroke-width:0.182"
            x="48.23103"
-           y="65.966866"
+           y="65.966873"
            id="tspan62999">bath</tspan></text><text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.76389px;line-height:1.1;font-family:Avenir;-inkscape-font-specification:Avenir;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:0.827451;stroke:none;stroke-width:0.182;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
